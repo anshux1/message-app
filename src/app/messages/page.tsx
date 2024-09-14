@@ -1,3 +1,4 @@
+"use client"
 import { Messages } from '@/components/Messages'
 import SendMessages from '@/components/SendMessage'
 import { getSession } from 'next-auth/react';
