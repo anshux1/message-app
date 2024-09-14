@@ -66,7 +66,7 @@ export function GlassNavbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mr-4">
                 {navlinks.map((item) => (
-                  <DropdownMenuItem>
+                  <DropdownMenuItem key={item.key}>
                     <Link href={item.href}>{item.name}</Link>
                    </DropdownMenuItem>
                 ))}
