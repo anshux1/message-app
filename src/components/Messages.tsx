@@ -4,8 +4,11 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { useEffect, useState } from "react";
+import { SquareX } from "lucide-react";
+import { deleteMessages } from "@/actions/deleteMessage";
 
 type Message = {
+  id: string;
   message: string;
 }
 
@@ -33,7 +36,7 @@ export  function Messages() {
       }
       const interval = setInterval(() => {
         fetchMessages();
-      }, 10000)
+      }, 5000)
 
       return () => clearInterval(interval)  
     } catch (error) {
@@ -53,7 +56,7 @@ export  function Messages() {
   return (
     <div className="p-4 flex flex-wrap gap-3">
       {messaages && messaages.map((item, index) => {
-        return MessageCard({ message: item.message, number: index });
+        return MessageCard({ message: item.message, number: index, id: item.id });
       })}
     </div>
   )
@@ -63,14 +66,22 @@ export  function Messages() {
 interface CardProps {
   message: string;
   number: number;
+  id: string;
 }
 
 
-function MessageCard({ message, number }: CardProps) {
+function MessageCard({ message, number, id }: CardProps) {
   return (
     <Card className="w-[321px]">
       <CardHeader>
-        <CardTitle className="text-sm">Message {number + 1}</CardTitle>
+        <div className="flex justify-between">
+          <CardTitle className="text-sm">Message {number + 1}</CardTitle>
+          <SquareX 
+            color="#991b11"
+            className="cursor-pointer w-5 h-5"
+            onClick={() => deleteMessages(id)}
+          />
+        </div>
         <CardDescription>{message}</CardDescription>
       </CardHeader>
     </Card>
