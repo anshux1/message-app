@@ -1,21 +1,21 @@
 "use client"
+import { checkUniqueUsername } from '@/actions/checkUniqueUsername'
 import { Button } from '@/components/ui/button'
 import {
-   Card,
-   CardContent,
-   CardDescription,
-   CardHeader,
-   CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useEffect, useRef, useState } from 'react'
 import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
-import { useDebounceCallback } from 'usehooks-ts'
-import { checkUniqueUsername } from '@/actions/checkUniqueUsername'
 import { getSession, signIn } from 'next-auth/react'
-import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
+import { useDebounceCallback } from 'usehooks-ts'
 
 enum AccountType {
   Existing,
@@ -23,11 +23,6 @@ enum AccountType {
 }
 
 export default async function LoginForm() {
-  const session = await getSession();
-  const router = useRouter();
-  if(session && session.user){
-    return router.replace('/')
-  }
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameUniqueMessage, setUsernameUniqueMessage] = useState('');
@@ -36,9 +31,13 @@ export default async function LoginForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [accountType, setAccountType] = useState<AccountType>(AccountType.New)
   const buttonEnter = useRef<HTMLButtonElement>(null)
-  
   const debouncedSetUsername = useDebounceCallback(setUsername, 500);
-
+  const session = await getSession();
+  const router = useRouter();
+  if(session && session.user){
+    return router.replace('/')
+  }
+  
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if(event.key === "Enter"){
