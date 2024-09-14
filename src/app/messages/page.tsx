@@ -1,8 +1,8 @@
 "use client"
-import { Messages } from '@/components/Messages'
-import SendMessages from '@/components/SendMessage'
+import { Messages } from '@/components/Messages';
+import SendMessages from '@/components/SendMessage';
 import { getSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 export default async function HomePage(){
   const router = useRouter();

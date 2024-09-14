@@ -34,18 +34,20 @@ export default async function LoginForm() {
   const debouncedSetUsername = useDebounceCallback(setUsername, 500);
   const session = await getSession();
   const router = useRouter();
-  if(session && session.user){
-    return router.replace('/')
-  }
+
+  useEffect(() => {
+    if(session && session.user){
+      return router.replace('/')
+    }
+  },[router])
   
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if(event.key === "Enter"){
         buttonEnter.current?.click();
       }
-    }
+    };
     document.addEventListener("keypress", handleKeyPress)
-
     return () => {
       document.removeEventListener("keypress", handleKeyPress)
     };
