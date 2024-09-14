@@ -1,11 +1,26 @@
 import db from "@/db";
-import { messageImputSchema } from "@/types";
+import { authOptions } from "@/lib/auth";
+import { messageImputSchema, messageInputProps } from "@/types";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest){
   try {
-    const { username , message } = await req.json();
+    const session = await getServerSession(authOptions);
+    if(!session){
+      return NextResponse.json({
+        success: false,
+        message: "Please login to send message"
+      })
+    }
+    const { username , message }: messageInputProps = await req.json();
     const { success } = messageImputSchema.safeParse({ username, message });
+    if(username.length < 3 && message.length < 10){
+      return NextResponse.json({
+        success: false,
+        message: "Wrong inputs"
+      })
+    }
     if(!success){
       return NextResponse.json({
         success: false,
@@ -52,10 +67,11 @@ export async function POST(req: NextRequest){
       success: true,
       message: "Message sent successfully."
     })
-  } catch (error) {
-    return NextResponse.json({
-      success: false,
-      message: "Try again after some time"
-    })
+  } catch (error) {  
+    console.error("Error in sendMessages:", error); // Log the error  
+    return NextResponse.json({  
+      success: false,  
+      message: "Try again after some time"  
+     });  
   }
 }
