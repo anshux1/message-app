@@ -22,7 +22,7 @@ enum AccountType {
   New
 }
 
-export default async function LoginForm() {
+export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameUniqueMessage, setUsernameUniqueMessage] = useState('');
@@ -32,14 +32,18 @@ export default async function LoginForm() {
   const [accountType, setAccountType] = useState<AccountType>(AccountType.New)
   const buttonEnter = useRef<HTMLButtonElement>(null)
   const debouncedSetUsername = useDebounceCallback(setUsername, 500);
-  const session = await getSession();
   const router = useRouter();
 
   useEffect(() => {
-    if(session && session.user){
-      return router.replace('/')
-    }
-  },[router])
+    const checkSession = async () => {
+      const session = await getSession();
+      if (session && session.user) {
+        router.replace('/');
+      }
+    };
+    checkSession();
+  }, [router]);
+
   
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
