@@ -65,12 +65,11 @@ export function GlassNavbar() {
                 <UserCircle2 className="hidden md:block lg:block"/>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mr-4">
-                <DropdownMenuItem>
-                  <Link href='/messages'>Messages</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href='/about'>About</Link>
-                </DropdownMenuItem>
+                {navlinks.map((item) => (
+                  <DropdownMenuItem>
+                    <Link href={item.href}>{item.name}</Link>
+                   </DropdownMenuItem>
+                ))}
                 <DropdownMenuItem className="cursor-pointer" onClick={logoutHandler}>
                   <p>Logout</p>
                 </DropdownMenuItem>
