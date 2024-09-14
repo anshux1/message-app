@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
             data: {
               username: credentials.username,
               password: hashedPassword,
-              isAcceptingMessage: true
+              isAcceptingMessage: true,
+              isUsernameVisible: true
             }
           })
           console.log("New user created.");

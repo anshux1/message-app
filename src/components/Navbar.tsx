@@ -14,7 +14,9 @@ import { toast } from "sonner"
 const navlinks = [
   { key: 1, name: "Home", href: "/" },
   { key: 2, name: "Messages", href: "/messages" },
-  { key: 3, name: "About", href: "/about" }
+  { key: 3, name: "Find Users", href: "/findUsers" },
+  { key: 4, name: "Dashboard", href: "/dashboard" },
+  { key: 5, name: "About", href: "/about" }
 ]
 
 export function GlassNavbar() {
