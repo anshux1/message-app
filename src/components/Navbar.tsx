@@ -49,7 +49,7 @@ export function GlassNavbar() {
               </div>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div>
             { !user && pathname !== "/signin" && 
             <Link href='/signin' className="text-primary border-primary outline-black px-4 py-2 border-black border-[1px] rounded-md hover:bg-primary hover:text-primary-foreground">
               Login

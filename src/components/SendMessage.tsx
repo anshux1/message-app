@@ -28,11 +28,18 @@ export default function SendMessages(){
   })
 
   const buttonRef = useRef<HTMLButtonElement>(null)
+  
+  const setflagtoTrue = () => {
+    setTimeout(() => {
+      setFlag(false);
+    }, 2000)
+  }
   useEffect(() => {
     buttonRef.current
     if(flag && buttonRef.current){
       buttonRef.current.click();
     }
+    setflagtoTrue();
   },[flag])
 
   const handleSendMessage = async() => {
