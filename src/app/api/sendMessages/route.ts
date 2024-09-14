@@ -28,7 +28,7 @@ export async function POST(req: NextRequest){
       })
     }
     const isUserExist = await db.user.findUnique({
-      where: { username }
+      where: { username: username.toLowerCase() }
     })
     if(!isUserExist){
       return NextResponse.json({
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest){
 
     const newMessage = await db.message.create({
       data: {
-        userId: username,
+        userId: username.toLowerCase(),
         message
       }
     })

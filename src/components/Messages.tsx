@@ -45,7 +45,7 @@ export  function Messages() {
   if(messaages.length < 1){
     return (
       <div className="p-6 flex flex-wrap gap-3">
-        No messages avilable
+        No messages available
       </div>
     )
   }

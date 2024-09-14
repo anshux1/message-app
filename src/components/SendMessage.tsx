@@ -40,7 +40,7 @@ export default function SendMessages(){
       buttonRef.current.click();
     }
     setflagtoTrue();
-  },[flag])
+  },[flag === true])
 
   const handleSendMessage = async() => {
     setIsSubmitting(true);

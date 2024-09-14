@@ -83,7 +83,7 @@ export default function LoginForm() {
       }
       const signInResponse = await signIn('credentials', {
         redirect: false,
-        username: username,
+        username: username.toLowerCase(),
         password: password
       })
       if(signInResponse?.error){
