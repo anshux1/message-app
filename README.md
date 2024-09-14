@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Message App
+
+A website where users can send anonymous messages to others using just their username and receive anonymous messages in return.
+
+## Tech Stack
+
+- **Frontend**: Next.js
+- **Backend**: Prisma, NextAuth
+- **Database**: MongoDB
+- **UI Components**: shadcn
+
+## Features
+
+- Send anonymous messages to any user by their username.
+- Receive anonymous messages from others.
+- Simple and user-friendly UI.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure you have the following installed:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/) (or npm if preferred)
+- A MongoDB instance (you can use MongoDB Atlas for cloud hosting)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/yourusername/message-app.git
+   
+2. Navigate to the project directory:
+    
+   ```bash
+   cd message-app
+   
+3. Set up your environment variables:
+   
+   Create a .env file in the root of the project with the following variables:
+   ```bash 
+   DATABASE_URL=mongodb+srv://example-url
+   NEXTAUTH_SECRET=your-secret-key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Install the dependencies:
+    ```bash
+    yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Running the App
 
-## Deploy on Vercel
+   To start the app locally, run the following command:
+    ```bash
+    yarn dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This will start the development server on http://localhost:3000.
