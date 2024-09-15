@@ -23,17 +23,20 @@ export  function Messages() {
     router.replace("/signin");
   }
 
+  const fetchMessages = async() => {
+    const response = await getMessages(userData?.username || ""); 
+    if(!response.success){
+      setIsMessagesExist(response.message || "")
+    }
+    if(response?.success){
+      setMessages(response?.data || [])
+    }
+  }
+
   useEffect(() => {
     try {
-      const fetchMessages = async() => {
-        const response = await getMessages(userData?.username || ""); 
-        if(!response.success){
-          setIsMessagesExist(response.message || "")
-        }
-        if(response?.success){
-          setMessages(response?.data || [])
-        }
-      }
+      fetchMessages();
+      
       const interval = setInterval(() => {
         fetchMessages();
       }, 5000)
