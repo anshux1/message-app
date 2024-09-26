@@ -1,4 +1,4 @@
-# Message App
+# Anonymous Message Sender
 
 A website where users can send anonymous messages to others using just their username and receive anonymous messages in return.
 
