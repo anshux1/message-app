@@ -32,7 +32,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/message-app.git
+   git clone git@github.com:anshux1/message-app.git
    
 2. Navigate to the project directory:
     
